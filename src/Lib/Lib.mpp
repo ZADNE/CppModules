@@ -1,0 +1,7 @@
+export module Lib;
+
+namespace re {
+
+export const char* MyFunc();
+
+}
