@@ -35,6 +35,15 @@ jobs:
         echo "build-dir=${{ github.workspace }}/CppModules/build" >> "$GITHUB_ENV"
         echo "source-dir=${{ github.workspace }}/CppModules" >> "$GITHUB_ENV"
 
+    - name: Select generator
+      shell: bash
+      run: |
+        if [[ "${{ matrix.os }}" == "windows-2022" ]]; then
+          echo "generator=Visual Studio 17 2022" >> $GITHUB_ENV
+        else
+          echo "generator=Ninja" >> $GITHUB_ENV
+        fi
+
     - name: Clone CppModules
       uses: actions/checkout@v4
       with:
@@ -72,7 +81,7 @@ jobs:
     - name: Configure CMake
       run: >
         cmake -B ${{ env.build-dir }}
-        -G Ninja
+        -G "${{ env.generator }}"
         -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
         -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
         -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
