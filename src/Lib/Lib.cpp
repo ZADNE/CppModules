@@ -1,9 +1,17 @@
+module;
+
+#include <iostream>
+#include <string>
+
 module Lib;
+
 
 namespace re {
 
-const char* MyFunc() {
-    return "tvoje mama";
+
+std::string MyFunc() {
+    vk::DescriptorSetLayout dsl{};
+    return std::to_string(sizeof(dsl));
 }
 
 }

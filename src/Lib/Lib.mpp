@@ -1,7 +1,15 @@
+module;
+#include <string>
+
 export module Lib;
+import vulkan_hpp;
 
 namespace re {
 
-export const char* MyFunc();
+export std::string MyFunc();
+
+export struct DSL{
+    vk::DescriptorSetLayout dsl{};
+}; 
 
 }
